@@ -1,4 +1,7 @@
 package Base;
+
+import java.util.Scanner;
+
 /*
 UCF COP3330 Summer 2021 Assignment 1 Solution
 Copyright 2021 Alek Dussuau
@@ -35,7 +38,36 @@ Implement the program using data structures to avoid nested if statements.
  */
 public class App {
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
+
+        //inputs
+        System.out.print("What is the order amount? ");
+        String buff_amount = input.nextLine();
+        System.out.print("What state do you live in? ");
+        String state = input.nextLine();
+        System.out.print("What county do you live in? ");
+        String county = input.nextLine();
+
+        //parsing
+        double amount = Double.parseDouble(buff_amount);
+        double rate = 0;
+
+        if (state.equalsIgnoreCase("wisconsin")){
+            rate += .05;
+            if (county.equalsIgnoreCase("Eau Claire")){
+                rate += .005;
+            }else if(county.equalsIgnoreCase("Dunn")){
+                rate += .004;
+            }
+        }
+
+        //math
+        double tax = rate * amount;
+        double total = tax + amount;
+
+        //output
+        System.out.printf("The tax is $%.2f\nThe total is $%.2f", tax, total);
 
     }
 }
